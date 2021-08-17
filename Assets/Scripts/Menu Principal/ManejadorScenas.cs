@@ -21,4 +21,9 @@ public class ManejadorScenas : MonoBehaviour
     {
         SceneManager.LoadScene("ModoJuego");
     }
+
+    public void CargarEscenaMenuPrincipal()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
 }

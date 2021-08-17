@@ -55,12 +55,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Assets\UI\Sci-Fi UI\Demo_Assets\scripts\GUI_Demo.cs" />
+     <Compile Include="Assets\Scripts\Menu Juego\DesplazamientoNave.cs" />
+     <Compile Include="Assets\Scripts\Menu Juego\InstanciadorNave.cs" />
+     <Compile Include="Assets\Scripts\Menu Juego\MenuJuego.cs" />
      <Compile Include="Assets\Scripts\Menu Principal\ManejadorScenas.cs" />
      <Compile Include="Assets\Scripts\Menu Principal\MenuPrincipal.cs" />
-     <None Include="Assets\Assets\DeepSpaceSkyboxPack\GalaxyFire\Galaxy Fire Skybox Readme.txt" />
-     <None Include="Assets\Assets\DeepSpaceSkyboxPack\DiverseSpace\Diverse Space Skybox Readme.txt" />
-     <None Include="Assets\Assets\DeepSpaceSkyboxPack\GalacticGreen\Galactic Green Skybox Readme.txt" />
+     <None Include="Assets\Assets\SkyBox\DeepSpaceSkyboxPack\GalaxyFire\Galaxy Fire Skybox Readme.txt" />
+     <None Include="Assets\Assets\SkyBox\DeepSpaceSkyboxPack\DiverseSpace\Diverse Space Skybox Readme.txt" />
+     <None Include="Assets\Assets\SkyBox\DeepSpaceSkyboxPack\GalacticGreen\Galactic Green Skybox Readme.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
