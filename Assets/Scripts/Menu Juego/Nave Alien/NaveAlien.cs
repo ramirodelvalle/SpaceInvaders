@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class NaveAlien : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject ObjetoADisparar;
+    public Transform PuntoDeDisparo;
+    public float fuerzaDelDisparo;
+    public GameObject paredIzquierda;
+    public GameObject paredDerecha;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
+        if (collision.gameObject.name.Contains(paredIzquierda.name) || collision.gameObject.name.Contains(paredDerecha.name))
+        {
+            try
+            {
+                MovimientoContenedorNavesAlien scriptContenedorNavesAlien = 
+                    GameObject.Find("ContenedorNavesAlien").GetComponent<MovimientoContenedorNavesAlien>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                scriptContenedorNavesAlien.CambiarDireccionDelMovimiento();
+                //scriptContenedorNavesAlien.MoverObjetoVerticalmente();
+            }
+            catch (System.Exception)
+            {
+                Debug.LogWarning("Objeto no encontrado");
+                throw;
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ public class NaveJugador : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SistemaDisparo sistemaDisparo = new SistemaDisparo();
+            SistemaDisparo sistemaDisparo = gameObject.AddComponent<SistemaDisparo>();
             sistemaDisparo.DispararObjeto(ObjetoADisparar, PuntoDeDisparo, new Vector3(0, fuerzaDelDisparo, 0), 1);
         }
     }

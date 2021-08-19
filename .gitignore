@@ -1,3 +1,4 @@
 
 *.backup
 Library/Artifacts/
+Temp/
