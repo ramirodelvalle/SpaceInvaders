@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810740cdd16f26429bc80b326d19a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoColisionador: {fileID: 7301071592105926065, guid: ec83b57c140b5454399d495e633a0f55,
+  objetoColisionador: {fileID: 6514907728563633400, guid: 8e278ba14b53869429c4f06be7e9f92c,
     type: 3}
 --- !u!114 &6229700336147884511
 MonoBehaviour:

@@ -10,6 +10,10 @@ public class MovimientoContenedorNavesAlien : MonoBehaviour
     bool yaMovioHaciaAbajo = false;
     float tiempoParaMoverHaciaAbajo = 1;
 
+    /// <summary>
+    /// Este script sirve para el movimento del total de naves, si alguna nave choca sobre las paredes de los extremos, ejecuta
+    /// una funcion para que este script pueda mover todas las naves
+    /// </summary>
     void Start()
     {
         direccionMovimientoDerecha = true;

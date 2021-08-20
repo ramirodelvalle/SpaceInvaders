@@ -32,29 +32,33 @@ public class InstanciadorAliens : MonoBehaviour
 
     void InstanciarTodosLosAliens()
     {
+        int id = 0;
         float posX = -7;
         float posY = 5;
         Vector3 pos = new Vector3(posX, posY, 0);
         for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < 13; j++)
+            for (int j = 0; j < 2; j++)
             {
-                InstanciarUnAlien(pos);
+                InstanciarUnAlien(pos, id);
                 pos.x += 1.2f;
+                id++;
             }
             pos.y += -1;
             pos.x = posX;
         }
     }
 
-    void InstanciarUnAlien(Vector3 pos)
+    void InstanciarUnAlien(Vector3 pos, int id)
     {
         GameObject contenedorNavesAlien = GameObject.Find("ContenedorNavesAlien");
 
         var nuevaNaveAlien = GameObject.Instantiate(Alien, pos, Quaternion.identity);
+        nuevaNaveAlien.name = "NaveAlien_" + id;
         nuevaNaveAlien.transform.parent = contenedorNavesAlien.transform;
 
-        nuevaNaveAlien.GetComponent<SpriteRenderer>().color = Colores.ObtenerColorAleatorio();
+        //nuevaNaveAlien.GetComponent<SpriteRenderer>().color = Colores.ObtenerColorAleatorio();
+        nuevaNaveAlien.GetComponent<SpriteRenderer>().color = Color.red;
 
         nuevaNaveAlien.GetComponent<NaveAlien>().paredIzquierda = paredIzquierda;
         nuevaNaveAlien.GetComponent<NaveAlien>().paredDerecha = paredDerecha;

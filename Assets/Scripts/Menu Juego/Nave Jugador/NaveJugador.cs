@@ -8,11 +8,6 @@ public class NaveJugador : MonoBehaviour
     public Transform PuntoDeDisparo;
     public float fuerzaDelDisparo;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         PulsoTeclaEspacio();

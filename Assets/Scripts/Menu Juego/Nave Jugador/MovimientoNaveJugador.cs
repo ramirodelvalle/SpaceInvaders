@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovimientoNaveJugador : MonoBehaviour
 {
-    static int velocidadDeDesplazamiento = 10;
+    static int velocidadDeDesplazamiento = 15;
    
     void Update()
     {
@@ -16,7 +16,7 @@ public class MovimientoNaveJugador : MonoBehaviour
         //Mover a la izquierda
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if (transform.position.x > -9.55)
+            if (transform.position.x > -9.5)
                 transform.Translate(new Vector2(-1, 0) * Time.deltaTime * velocidadDeDesplazamiento);
         }
 
