@@ -8,9 +8,11 @@ public class InstanciadorAliens : MonoBehaviour
     private Colores Colores;
     public GameObject paredIzquierda;
     public GameObject paredDerecha;
-
+    public int cantTotalDeAliens;
     void Start()
     {
+        //cantTotalDeAliens = 0;
+
         Colores = gameObject.AddComponent<Colores>();
 
         InstanciarContenedorNavesAlien();
@@ -47,6 +49,7 @@ public class InstanciadorAliens : MonoBehaviour
             pos.y += -1;
             pos.x = posX;
         }
+        cantTotalDeAliens = id;
     }
 
     void InstanciarUnAlien(Vector3 pos, int id)

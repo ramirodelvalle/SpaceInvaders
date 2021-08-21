@@ -5,6 +5,7 @@ using UnityEngine;
 public class NaveAlien : MonoBehaviour
 {
     public GameObject ObjetoADisparar;
+    public GameObject ObjetoExplotar;
     public Transform PuntoDeDisparo;
     public float fuerzaDelDisparo;
     public GameObject paredIzquierda;
@@ -12,8 +13,8 @@ public class NaveAlien : MonoBehaviour
     public GameObject laserNaveJugador;
     public bool dispararLaser;
     string nombreNaveAlien;
-    int posNaveAlien;
-    Color colorPropio;
+    public int idNaveAlien;
+    public Color colorPropio { get; set; }
     public bool estaOperativa { get; set; }
 
     public float tiempoRestanteParaSiguienteDisparo;
@@ -26,9 +27,11 @@ public class NaveAlien : MonoBehaviour
         if (gameObject.name.Contains("_"))
         {
             nombreNaveAlien = gameObject.name.Split('_')[0];
-            posNaveAlien = int.Parse(gameObject.name.Split('_')[1]);
+            //idNaveAlien = int.Parse(gameObject.name.Split('_')[1]);
         }
         colorPropio = gameObject.GetComponent<SpriteRenderer>().color;
+
+        ObjetoExplotar.gameObject.GetComponent<SpriteRenderer>().color = colorPropio;
     }
 
     void Update()
@@ -65,7 +68,7 @@ public class NaveAlien : MonoBehaviour
             bool estaOperativaLaNave = false;
             int cantidadDeNavesAlienPorFila = 13;
 
-            GameObject naveDeAbajo = GameObject.Find(nombreNaveAlien + "_" + (posNaveAlien + cantidadDeNavesAlienPorFila));
+            GameObject naveDeAbajo = GameObject.Find(nombreNaveAlien + "_" + (idNaveAlien + cantidadDeNavesAlienPorFila));
             if (naveDeAbajo != null)
             {
                 estaOperativaLaNave = naveDeAbajo.GetComponent<NaveAlien>().estaOperativa;
@@ -102,6 +105,7 @@ public class NaveAlien : MonoBehaviour
             try
             {
                 DestruirNaveAlien();
+                Debug.Log("me destrui");
             }
             catch (System.Exception ex)
             {
@@ -110,53 +114,34 @@ public class NaveAlien : MonoBehaviour
         }
     }
 
-    void DestruirNavesAlienAdyacentes()
-    {
-        try
-        {
-            bool estaOperativaLaNave = false;
-            Color colorNaveAlien;
-            int cantidadDeNavesAlienPorFila = 2;
-            NaveAlien scriptNaveAlien;
-
-            GameObject naveDeArriba = GameObject.Find(nombreNaveAlien + "_" + (posNaveAlien - cantidadDeNavesAlienPorFila));
-            if (naveDeArriba != null)
-            {
-                scriptNaveAlien = naveDeArriba.GetComponent<NaveAlien>();
-                estaOperativaLaNave = naveDeArriba.GetComponent<NaveAlien>().estaOperativa;
-                colorNaveAlien = naveDeArriba.GetComponent<SpriteRenderer>().color;
-                if (estaOperativaLaNave && colorPropio == colorNaveAlien)
-                {
-                    scriptNaveAlien.DestruirNavesAlienAdyacentes();
-                }
-            }
-
-            GameObject naveDeLaDerecha = GameObject.Find(nombreNaveAlien + "_" + (posNaveAlien + 1));
-            if (naveDeLaDerecha != null)
-            {
-                scriptNaveAlien = naveDeLaDerecha.GetComponent<NaveAlien>();
-                scriptNaveAlien.DestruirNavesAlienAdyacentes();
-            }
-
-            GameObject naveDeLaIzquierda = GameObject.Find(nombreNaveAlien + "_" + (posNaveAlien - 1));
-            if (naveDeLaIzquierda != null)
-            {
-                scriptNaveAlien = naveDeLaIzquierda.GetComponent<NaveAlien>();
-                scriptNaveAlien.DestruirNavesAlienAdyacentes();
-            }
-            DestruirNaveAlien();
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError(ex.Message);
-        }
-    }
-
-    void DestruirNaveAlien()
+    public void DestruirNaveAlien()
     {
         estaOperativa = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
+        Explotar();
+    }
+
+    public void Explotar()
+    {
+        List<Vector3> direcciones = new List<Vector3>();
+        direcciones.Add(new Vector3(fuerzaDelDisparo * -1, 0, 0));//izquierda
+        direcciones.Add(new Vector3(fuerzaDelDisparo * 1, 0, 0));//derecha
+        direcciones.Add(new Vector3(0, fuerzaDelDisparo * 1, 0));//arriba
+        direcciones.Add(new Vector3(0, fuerzaDelDisparo * -1, 0));//abajo
+
+        foreach (var item in direcciones)
+        {
+            ExplotarEnDireccion(item);
+        }
+    }
+
+    public void ExplotarEnDireccion(Vector3 direccion)
+    {
+        ObjetoExplotar.GetComponent<SpriteRenderer>().color = colorPropio;
+        SistemaDisparo sistemaDisparo = gameObject.AddComponent<SistemaDisparo>();
+        sistemaDisparo.DispararObjeto(ObjetoExplotar, gameObject.transform, direccion, 1);
     }
 }

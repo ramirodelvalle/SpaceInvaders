@@ -5,23 +5,31 @@ using UnityEngine;
 public class DetectorNavesAdyacentes : MonoBehaviour
 {
     public GameObject navePadre;
-    NaveAlien scriptNavePadre;
+    public List<GameObject> navesAdyacentes;
+
     private void Start()
     {
-        scriptNavePadre = navePadre.GetComponent<NaveAlien>();
+        navePadre = gameObject.transform.parent.gameObject;
+        navesAdyacentes = new List<GameObject>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!scriptNavePadre.estaOperativa)
+        if (collision.gameObject.name.Contains("DetectorAdyacente"))
         {
-            try
+            if (collision.gameObject.GetComponent<SpriteRenderer>().color == navePadre.GetComponent<SpriteRenderer>().color)
             {
-                Destroy(gameObject);
+                navesAdyacentes.Add(collision.gameObject.transform.parent.gameObject);
+                Debug.Log("soy nave "+ navePadre.name +" agregue nave del mismo color es la nave " + collision.gameObject.name);
             }
-            catch (System.Exception ex)
-            {
-                Debug.LogError(ex.Message);
-            }
+        }
+    }
+
+    public void EliminarNavesAdyacentes()
+    {
+        foreach (var item in navesAdyacentes)
+        {
+            item.GetComponent<NaveAlien>().DestruirNaveAlien();
         }
     }
 }
