@@ -179,6 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjetoADisparar: {fileID: 4518632188367315497, guid: 57c6900fc147d2f4ebe43d4469ed612b,
     type: 3}
+  ObjetoExplotar: {fileID: 800295599649831623, guid: cf25632d6a0a16c4280a58963476f618,
+    type: 3}
   PuntoDeDisparo: {fileID: 1168782311824482293}
   fuerzaDelDisparo: 100
   paredIzquierda: {fileID: 8110635537892247346, guid: 0919eeafb0ef0d942a20ef11f173b461,
@@ -188,6 +190,7 @@ MonoBehaviour:
   laserNaveJugador: {fileID: 4518632188367315497, guid: 4ca151860a162924a83127fda6e29452,
     type: 3}
   dispararLaser: 0
+  idNaveAlien: 0
   tiempoRestanteParaSiguienteDisparo: 0
 --- !u!1 &6636050145704451727
 GameObject:

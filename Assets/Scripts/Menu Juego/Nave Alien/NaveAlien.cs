@@ -18,6 +18,7 @@ public class NaveAlien : MonoBehaviour
     public bool estaOperativa { get; set; }
 
     public float tiempoRestanteParaSiguienteDisparo;
+    public bool bNaceMuerta;//TODO sacar esto
 
     private void Start()
     {
@@ -32,6 +33,11 @@ public class NaveAlien : MonoBehaviour
         colorPropio = gameObject.GetComponent<SpriteRenderer>().color;
 
         ObjetoExplotar.gameObject.GetComponent<SpriteRenderer>().color = colorPropio;
+
+        if (bNaceMuerta)
+        {
+            DestruirNaveAlien();
+        }
     }
 
     void Update()
@@ -100,7 +106,7 @@ public class NaveAlien : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.name.Contains(laserNaveJugador.name))
+        if (collision.gameObject.name.Contains(laserNaveJugador.name) && estaOperativa)
         {
             try
             {
@@ -118,7 +124,6 @@ public class NaveAlien : MonoBehaviour
     {
         estaOperativa = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 
         Explotar();
@@ -126,11 +131,12 @@ public class NaveAlien : MonoBehaviour
 
     public void Explotar()
     {
+        float fuerzaExplosion = 2000;
         List<Vector3> direcciones = new List<Vector3>();
-        direcciones.Add(new Vector3(fuerzaDelDisparo * -1, 0, 0));//izquierda
-        direcciones.Add(new Vector3(fuerzaDelDisparo * 1, 0, 0));//derecha
-        direcciones.Add(new Vector3(0, fuerzaDelDisparo * 1, 0));//arriba
-        direcciones.Add(new Vector3(0, fuerzaDelDisparo * -1, 0));//abajo
+        direcciones.Add(new Vector3(fuerzaExplosion * -1, 0, 0));//izquierda
+        direcciones.Add(new Vector3(fuerzaExplosion * 1, 0, 0));//derecha
+        direcciones.Add(new Vector3(0, fuerzaExplosion * 1, 0));//arriba
+        direcciones.Add(new Vector3(0, fuerzaExplosion * -1, 0));//abajo
 
         foreach (var item in direcciones)
         {

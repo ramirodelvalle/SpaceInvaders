@@ -11,7 +11,10 @@ public class DetectorColision : MonoBehaviour
         {
             if (collision.gameObject.name.Contains(objetoColisionador.name))
             {
-                Destroy(gameObject);
+                if (collision.gameObject.GetComponent<NaveAlien>().estaOperativa)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         catch (System.Exception)

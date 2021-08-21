@@ -10,12 +10,19 @@ public class Explosion : MonoBehaviour
         {
             if (collision.gameObject.name.Contains("NaveAlien"))
             {
-                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio == gameObject.GetComponent<SpriteRenderer>().color)
+                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio == gameObject.GetComponent<SpriteRenderer>().color
+                    && collision.gameObject.GetComponent<NaveAlien>().estaOperativa)
                 {
                     collision.gameObject.GetComponent<NaveAlien>().DestruirNaveAlien();
+
+                    Debug.Log("me destrui explosion");
+                    Destroy(gameObject);
                 }
-                Debug.Log("me destrui explosion");
-                Destroy(gameObject);
+
+                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio != gameObject.GetComponent<SpriteRenderer>().color)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         catch (System.Exception ex)
