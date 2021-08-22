@@ -9,6 +9,10 @@ public class InstanciadorAliens : MonoBehaviour
     public GameObject paredIzquierda;
     public GameObject paredDerecha;
     public int cantTotalDeAliens;
+    public int cantAliensPorFila;
+    public int cantFilasDeAliens;
+    public float posX;
+    public float posY;
     void Start()
     {
         //cantTotalDeAliens = 0;
@@ -18,24 +22,16 @@ public class InstanciadorAliens : MonoBehaviour
         InstanciarTodosLosAliens();
     }
 
-    void InstanciarUnAlien()
-    {
-        var newObj2 = Instantiate(Alien, new Vector3(0, 7, 0), Quaternion.identity);
-        newObj2.transform.parent = GameObject.Find("ContenedorNavesAliens").transform;
-    }
-
     void InstanciarTodosLosAliens()
     {
         int id = 0;
-        float posX = -7;
-        float posY = 5;
         Vector3 pos = new Vector3(posX, posY, 0);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < cantFilasDeAliens; i++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < cantAliensPorFila; j++)
             {
                 InstanciarUnAlien(pos, id);
-                pos.x += 1.2f;
+                pos.x += 1.8f;
                 id++;
             }
             pos.y += -1;
@@ -52,8 +48,11 @@ public class InstanciadorAliens : MonoBehaviour
         nuevaNaveAlien.name = "NaveAlien_" + id;
         nuevaNaveAlien.transform.parent = contenedorNavesAlien.transform;
 
-        nuevaNaveAlien.GetComponent<SpriteRenderer>().color = Colores.ObtenerColorAleatorio();
+        Color colorAleatorio = Colores.ObtenerColorAleatorio();
+        //nuevaNaveAlien.GetComponent<SpriteRenderer>().color = colorAleatorio;
         //nuevaNaveAlien.GetComponent<SpriteRenderer>().color = Color.red;
+
+        nuevaNaveAlien.GetComponent<NaveAlien>().colorPropio = colorAleatorio;
 
         nuevaNaveAlien.GetComponent<NaveAlien>().paredIzquierda = paredIzquierda;
         nuevaNaveAlien.GetComponent<NaveAlien>().paredDerecha = paredDerecha;

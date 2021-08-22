@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4518632188367315479}
   - component: {fileID: 4518632188367315478}
   - component: {fileID: 4707340556926782702}
-  - component: {fileID: -4154248782813746697}
+  - component: {fileID: -397944872622660724}
   m_Layer: 0
   m_Name: LaserJugador
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-4154248782813746697
+--- !u!114 &-397944872622660724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4518632188367315497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c810740cdd16f26429bc80b326d19a7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c3f7dba63ce5f4b88c7e3ea1b986e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoColisionador: {fileID: 6514907728563633400, guid: 8e278ba14b53869429c4f06be7e9f92c,
+  naveAlien: {fileID: 3004301723470007388, guid: e83d9c3a688d26646bb0370843c93e02,
     type: 3}

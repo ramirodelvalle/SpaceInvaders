@@ -14,7 +14,7 @@ public class NaveAlien : MonoBehaviour
     public bool dispararLaser;
     string nombreNaveAlien;
     public int idNaveAlien;
-    public Color colorPropio { get; set; }
+    public Color colorPropio;
     public bool estaOperativa { get; set; }
 
     public float tiempoRestanteParaSiguienteDisparo;
@@ -23,14 +23,16 @@ public class NaveAlien : MonoBehaviour
     private void Start()
     {
         estaOperativa = true;
-        tiempoRestanteParaSiguienteDisparo = 3;
+        tiempoRestanteParaSiguienteDisparo = Random.Range(1f, 3f);
 
         if (gameObject.name.Contains("_"))
         {
             nombreNaveAlien = gameObject.name.Split('_')[0];
-            //idNaveAlien = int.Parse(gameObject.name.Split('_')[1]);
+            idNaveAlien = int.Parse(gameObject.name.Split('_')[1]);
         }
-        colorPropio = gameObject.GetComponent<SpriteRenderer>().color;
+        //colorPropio = gameObject.GetComponent<SpriteRenderer>().color;
+
+        gameObject.GetComponent<SpriteRenderer>().color = colorPropio;
 
         ObjetoExplotar.gameObject.GetComponent<SpriteRenderer>().color = colorPropio;
 
@@ -49,13 +51,16 @@ public class NaveAlien : MonoBehaviour
     {
         if (tiempoRestanteParaSiguienteDisparo <= Time.time)
         {
-            tiempoRestanteParaSiguienteDisparo = Time.time + Random.Range(1, 1);
+            tiempoRestanteParaSiguienteDisparo += Random.Range(1f, 3f);
 
-            if (!HayAlgunaNaveAlienPorDebajo())
+            if (estaOperativa)
             {
                 if (dispararLaser)
                 {
-                    DispararLaser();
+                    if (!HayAlgunaNaveAlienPorDebajo())
+                    {
+                        DispararLaser();
+                    }
                 }
             }
         }
@@ -63,8 +68,7 @@ public class NaveAlien : MonoBehaviour
 
     public void DispararLaser()
     {
-        SistemaDisparo sistemaDisparo = gameObject.AddComponent<SistemaDisparo>();
-        sistemaDisparo.DispararObjeto(ObjetoADisparar, PuntoDeDisparo, new Vector3(0, fuerzaDelDisparo * -1, 0), 1);
+        gameObject.GetComponent<SistemaDisparo>().DispararObjeto(ObjetoADisparar, PuntoDeDisparo, new Vector3(0, fuerzaDelDisparo * -1, 0), 1);
     }
 
     bool HayAlgunaNaveAlienPorDebajo()
@@ -72,15 +76,23 @@ public class NaveAlien : MonoBehaviour
         try
         {
             bool estaOperativaLaNave = false;
-            int cantidadDeNavesAlienPorFila = 13;
+            int cantidadDeNavesAlienPorFila = GameObject.Find("Scripts").GetComponent<InstanciadorAliens>().cantAliensPorFila;
+            int cantidadFilasDeAliens = GameObject.Find("Scripts").GetComponent<InstanciadorAliens>().cantFilasDeAliens;
 
-            GameObject naveDeAbajo = GameObject.Find(nombreNaveAlien + "_" + (idNaveAlien + cantidadDeNavesAlienPorFila));
-            if (naveDeAbajo != null)
+            for (int i = 1; i <= cantidadFilasDeAliens; i++)
             {
-                estaOperativaLaNave = naveDeAbajo.GetComponent<NaveAlien>().estaOperativa;
+                GameObject naveDeAbajo = GameObject.Find(nombreNaveAlien + "_" +
+                    (idNaveAlien + cantidadDeNavesAlienPorFila * i));
+                if (naveDeAbajo != null)
+                {
+                    estaOperativaLaNave = naveDeAbajo.GetComponent<NaveAlien>().estaOperativa;
+                    if (estaOperativaLaNave)
+                    {
+                        return estaOperativaLaNave;
+                    }
+                }
             }
-
-            return estaOperativaLaNave;
+            return false;
         }
         catch (System.Exception ex)
         {
@@ -91,32 +103,27 @@ public class NaveAlien : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Contains(paredIzquierda.name) || collision.gameObject.name.Contains(paredDerecha.name))
+        try
         {
-            try
+            if (collision.gameObject.name.Contains(paredIzquierda.name) || collision.gameObject.name.Contains(paredDerecha.name))
             {
-                MovimientoContenedorNavesAlien scriptContenedorNavesAlien =
-                    GameObject.Find("ContenedorNavesAlien").GetComponent<MovimientoContenedorNavesAlien>();
+                if (estaOperativa)
+                {
+                    MovimientoContenedorNavesAlien scriptContenedorNavesAlien =
+                        GameObject.Find("ContenedorNavesAlien").GetComponent<MovimientoContenedorNavesAlien>();
 
-                scriptContenedorNavesAlien.CambiarDireccionDelMovimiento();
+                    scriptContenedorNavesAlien.CambiarDireccionDelMovimiento();
+                }
             }
-            catch (System.Exception ex)
-            {
-                Debug.LogError(ex.Message);
-            }
-        }
 
-        if (collision.gameObject.name.Contains(laserNaveJugador.name) && estaOperativa)
-        {
-            try
+            if (collision.gameObject.name.Contains(laserNaveJugador.name) && estaOperativa)
             {
                 DestruirNaveAlien();
-                Debug.Log("me destrui");
             }
-            catch (System.Exception ex)
-            {
-                Debug.LogError(ex.Message);
-            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError(ex.Message);
         }
     }
 
@@ -129,14 +136,15 @@ public class NaveAlien : MonoBehaviour
         Explotar();
     }
 
+    ///funcion que lanza 4 objetos en las 4 direciones para destruir naves adyacentes del mismo color
     public void Explotar()
     {
         float fuerzaExplosion = 2000;
         List<Vector3> direcciones = new List<Vector3>();
-        direcciones.Add(new Vector3(fuerzaExplosion * -1, 0, 0));//izquierda
-        direcciones.Add(new Vector3(fuerzaExplosion * 1, 0, 0));//derecha
-        direcciones.Add(new Vector3(0, fuerzaExplosion * 1, 0));//arriba
-        direcciones.Add(new Vector3(0, fuerzaExplosion * -1, 0));//abajo
+        direcciones.Add(new Vector3(fuerzaExplosion * -1, 0, 0)); //izquierda
+        direcciones.Add(new Vector3(fuerzaExplosion * 1, 0, 0)); //derecha
+        direcciones.Add(new Vector3(0, fuerzaExplosion * 1, 0)); //arriba
+        direcciones.Add(new Vector3(0, fuerzaExplosion * -1, 0)); //abajo
 
         foreach (var item in direcciones)
         {
@@ -147,6 +155,7 @@ public class NaveAlien : MonoBehaviour
     public void ExplotarEnDireccion(Vector3 direccion)
     {
         ObjetoExplotar.GetComponent<SpriteRenderer>().color = colorPropio;
+        ObjetoExplotar.GetComponent<Explosion>().color = colorPropio;
         SistemaDisparo sistemaDisparo = gameObject.AddComponent<SistemaDisparo>();
         sistemaDisparo.DispararObjeto(ObjetoExplotar, gameObject.transform, direccion, 1);
     }

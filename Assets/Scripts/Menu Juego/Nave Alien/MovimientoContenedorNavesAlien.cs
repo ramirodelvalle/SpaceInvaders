@@ -11,8 +11,8 @@ public class MovimientoContenedorNavesAlien : MonoBehaviour
     float tiempoParaMoverHaciaAbajo = 1;
 
     /// <summary>
-    /// Este script sirve para el movimento del total de naves, si alguna nave choca sobre las paredes de los extremos, ejecuta
-    /// una funcion para que este script pueda mover todas las naves
+    /// Este script sirve para el movimento en conjunto de las naves, si alguna nave choca sobre las paredes de los extremos, llama
+    /// una funcion de este script para que pueda mover las naves
     /// </summary>
     void Start()
     {
@@ -30,10 +30,10 @@ public class MovimientoContenedorNavesAlien : MonoBehaviour
         Vector2 posActualContenedorNavesAlien = gameObject.transform.position;
         float medidaDesplazamientoLateral = 0.5f;
 
-        //La nave alien espera el intervalo de tiempo antes de volver a moverse
+        //El objeto contenedor de naves alien espera el intervalo de tiempo antes de volver a moverse
         if (tiempoRestanteParaElMovimiento < Time.time)
         {
-            tiempoRestanteParaElMovimiento = Time.time + rangoDeTiempo;
+            tiempoRestanteParaElMovimiento += rangoDeTiempo;
 
             //si la direccion no es la derecha multiplico el desplazamiento para que se mueva en negativo(izquierda)
             if (!direccionMovimientoDerecha) medidaDesplazamientoLateral = medidaDesplazamientoLateral * -1f;
@@ -80,7 +80,7 @@ public class MovimientoContenedorNavesAlien : MonoBehaviour
     {
         if (Time.time >= tiempoParaMoverHaciaAbajo)
         {
-            tiempoParaMoverHaciaAbajo = Time.time + 2;
+            tiempoParaMoverHaciaAbajo += 1;
             yaMovioHaciaAbajo = false;
         }
     }

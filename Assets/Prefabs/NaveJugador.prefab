@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 7424890652644337884}
   - component: {fileID: 2278634839955222089}
   - component: {fileID: 2032216344633752986}
-  - component: {fileID: 6229700336147884511}
   - component: {fileID: -3583774088412669458}
   m_Layer: 0
   m_Name: NaveJugador
@@ -180,21 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810740cdd16f26429bc80b326d19a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoColisionador: {fileID: 6514907728563633400, guid: 8e278ba14b53869429c4f06be7e9f92c,
+  naveAlien: {fileID: 3004301723470007388, guid: e83d9c3a688d26646bb0370843c93e02,
     type: 3}
---- !u!114 &6229700336147884511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7424890652644337886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c810740cdd16f26429bc80b326d19a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objetoColisionador: {fileID: 4518632188367315497, guid: 57c6900fc147d2f4ebe43d4469ed612b,
+  laserAlien: {fileID: 4518632188367315497, guid: 57c6900fc147d2f4ebe43d4469ed612b,
     type: 3}
 --- !u!114 &-3583774088412669458
 MonoBehaviour:

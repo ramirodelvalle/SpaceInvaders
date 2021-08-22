@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    public Color color;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         try
         {
             if (collision.gameObject.name.Contains("NaveAlien"))
             {
-                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio == gameObject.GetComponent<SpriteRenderer>().color
+                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio == color
                     && collision.gameObject.GetComponent<NaveAlien>().estaOperativa)
                 {
                     collision.gameObject.GetComponent<NaveAlien>().DestruirNaveAlien();
 
-                    Debug.Log("me destrui explosion");
                     Destroy(gameObject);
                 }
 
-                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio != gameObject.GetComponent<SpriteRenderer>().color)
+                if (collision.gameObject.GetComponent<NaveAlien>().colorPropio != color)
                 {
                     Destroy(gameObject);
                 }

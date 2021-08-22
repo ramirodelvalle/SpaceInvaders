@@ -68,14 +68,14 @@
     <Compile Include="Assets\Scripts\Herramientas\Efectos\Explosion\Explosion.cs" />
     <Compile Include="Assets\Scripts\Herramientas\Efectos\Explosion\InstanciadorExplosion.cs" />
     <Compile Include="Assets\Scripts\Herramientas\OperacionesMatematicas.cs" />
-    <Compile Include="Assets\Scripts\Menu Juego\DetectorColision.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\MenuJuego.cs" />
-    <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\DetectorNavesAdyacentes.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\InstanciadorAliens.cs" />
-    <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\LogicaDestruccionGruposNavesAlien.cs" />
+    <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\LaserAlien.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\MovimientoContenedorNavesAlien.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Alien\NaveAlien.cs" />
+    <Compile Include="Assets\Scripts\Menu Juego\Nave Jugador\DetectorColisionNaveJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Jugador\InstanciadorNaveJugador.cs" />
+    <Compile Include="Assets\Scripts\Menu Juego\Nave Jugador\LaserJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Jugador\MovimientoNaveJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Nave Jugador\NaveJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\SistemaDisparo.cs" />
