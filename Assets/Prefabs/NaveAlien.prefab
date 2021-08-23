@@ -177,23 +177,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7a4850ad6831d4691e47d75cd6a222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidasRestantes: 0
+  fuerzaDelDisparo: 300
   ObjetoADisparar: {fileID: 4518632188367315497, guid: 57c6900fc147d2f4ebe43d4469ed612b,
     type: 3}
+  PuntoDeDisparo: {fileID: 7196945573578256209}
   ObjetoExplotar: {fileID: 800295599649831623, guid: cf25632d6a0a16c4280a58963476f618,
     type: 3}
-  PuntoDeDisparo: {fileID: 7196945573578256209}
-  fuerzaDelDisparo: 300
   paredIzquierda: {fileID: 8110635537892247346, guid: 0919eeafb0ef0d942a20ef11f173b461,
     type: 3}
   paredDerecha: {fileID: 3416170675072454187, guid: 47e3ddb3cb947c547a197f5d5771bc04,
     type: 3}
   laserNaveJugador: {fileID: 4518632188367315497, guid: 4ca151860a162924a83127fda6e29452,
     type: 3}
-  dispararLaser: 0
+  particulasExplosion: {fileID: 5169869905205641806, guid: d476b14a02004c14595193511afd9a5a,
+    type: 3}
+  dispararLaser: 1
   idNaveAlien: 0
   colorPropio: {r: 1, g: 1, b: 1, a: 0}
+  estaOperativa: 0
   tiempoRestanteParaSiguienteDisparo: 0
-  bNaceMuerta: 0
 --- !u!1 &3444984323694521899
 GameObject:
   m_ObjectHideFlags: 0

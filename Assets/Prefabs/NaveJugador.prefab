@@ -195,7 +195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b415a87d380c842b8dcbbef5daef47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidasRestantes: 0
+  fuerzaDelDisparo: 1500
   ObjetoADisparar: {fileID: 4518632188367315497, guid: 4ca151860a162924a83127fda6e29452,
     type: 3}
   PuntoDeDisparo: {fileID: 7566719595339803789}
-  fuerzaDelDisparo: 1500
+  naveAlien: {fileID: 3004301723470007388, guid: e83d9c3a688d26646bb0370843c93e02,
+    type: 3}
+  laserAlien: {fileID: 4518632188367315497, guid: 57c6900fc147d2f4ebe43d4469ed612b,
+    type: 3}
+  particulasExplosion: {fileID: 5169869905205641806, guid: d476b14a02004c14595193511afd9a5a,
+    type: 3}
