@@ -6,6 +6,5 @@ public class Nave : MonoBehaviour
     public float fuerzaDelDisparo;
     public GameObject ObjetoADisparar;
     public Transform PuntoDeDisparo;
-    //public bool estaOperativa = true;
 }
 

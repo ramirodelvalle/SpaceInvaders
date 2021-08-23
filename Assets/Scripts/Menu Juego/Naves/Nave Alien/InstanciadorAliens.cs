@@ -20,7 +20,6 @@ public class InstanciadorAliens : MonoBehaviour
         //para llamar la clase desde cualquier lugar
         if (esteObjeto == null) { esteObjeto = this; } else if (esteObjeto != this) { Destroy(gameObject); }
 
-
         Colores = gameObject.AddComponent<Colores>();
 
         Invoke("InstanciarTodosLosAliens", 0.5f);

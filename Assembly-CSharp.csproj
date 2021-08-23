@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Alien\LaserAlien.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Alien\MovimientoContenedorNavesAlien.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Alien\NaveAlien.cs" />
-    <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Jugador\DetectorColisionNaveJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Jugador\InstanciadorNaveJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Jugador\LaserJugador.cs" />
     <Compile Include="Assets\Scripts\Menu Juego\Naves\Nave Jugador\MovimientoNaveJugador.cs" />
